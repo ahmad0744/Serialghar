@@ -164,7 +164,7 @@ app.get('/sitemap.xml', async (req, res) => {
 
 app.get('/sitemap:pageNum.xml', async (req, res) => {
     const pageNum = parseInt(req.params.pageNum);
-    const pageSize = 5000;
+    const pageSize = 20000;
     const skip = (pageNum - 1) * pageSize;
 
     try {
