@@ -420,7 +420,7 @@ const yourHourlyFunction = () => {
     autotrigger();
     runnumber++;
 };
-//cron.schedule('*/10 * * * *', yourHourlyFunction);
+cron.schedule('*/10 * * * *', yourHourlyFunction);
 var dataarray = [];
 async function triggerFunction(url) {
     dataarray = [];
