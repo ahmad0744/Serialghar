@@ -367,11 +367,12 @@ app.post("/relatedblog", async (req, resp) => {
         const randomNumber = Math.floor(Math.random() * (count - 2 + 1)) + 2;
 
         const relblog = await allurlmodule.find({ tag: tagda }).limit(6).sort({ _id: -1 }).exec();
-        const ezoicurl = await furlall.find({type: 'url'}, 'url').limit(randomNumber).exec();
+        const ezoicurl = await furlall.find({ type: 'url' }, 'url').limit(randomNumber).exec();
         var urlObject = new URL(ezoicurl[randomNumber - 2].url);
         var urlQueryParam = urlObject.searchParams.get('url');
         var parts = urlQueryParam.split('/');
         var filename = parts[parts.length - 1].replace('NEHALCHANGE', '');
+
         resp.send({ relatdata: relblog, uniqueurl: [ezoicurl[randomNumber - 1].url, filename]});
         await allurlmodule.updateOne({ url: articalurl }, { $inc: { views: 1 } });
         // secondscrap to update

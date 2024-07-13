@@ -120,75 +120,63 @@ for (let index = 0; index < data.downlink.length; index++) {
   var pplayername1 = document.createElement('p');
   pplayername1.className = 'playername'
   if (element[0] == 'vkspeed') {
-    pplayername1.innerText = 'Vkspeed Player Link';
+    createlink(element,divlinklist,'Vkspeed Player Link','#82CAFF');
   } else if (element[0] == 'okru') {
-    pplayername1.innerText = 'Okru Player Link';
+    createlink(element,divlinklist,'Okru Player Link','#808000');
+    //pplayername1.innerText = 'Okru Player Link';
   } else if (element[0] == 'vkprime') {
-    pplayername1.innerText = 'Vkprime Player Link';
+    createlink(element,divlinklist,'Vkprime Player Link','#BCC6CC');
+    //pplayername1.innerText = 'Vkprime Player Link';
   } else if (element[0] == 'multiupdownload') {
-    pplayername1.innerText = 'Multiup Download Link';
+    createlink(element,divlinklist,'Multiup Download Link','#5288F7');
+   // pplayername1.innerText = 'Multiup Download Link';
   } else {
     pplayername1.innerText = `${element[0]} Player Link`;
   }
-  divlinklist.appendChild(pplayername1);
+ // divlinklist.appendChild(pplayername1);
+}
 
-  var directarray = ['https://descendentwringthou.com/dpyenfbcfy?key=34d817730d826dc4b2b226ab1253bf80',
-    'https://chalaips.com/4/6448298',
-    'https://descendentwringthou.com/dpyenfbcfy?key=34d817730d826dc4b2b226ab1253bf80',
-    'https://doruffleton.com/4/6532807', 'https://potsaglu.net/4/6533596',
-    'https://descendentwringthou.com/dpyenfbcfy?key=34d817730d826dc4b2b226ab1253bf80',
-    'https://chalaips.com/4/6448298',
-    'https://descendentwringthou.com/dpyenfbcfy?key=34d817730d826dc4b2b226ab1253bf80',
-    'https://doruffleton.com/4/6532807', 'https://potsaglu.net/4/6533596',
-    'https://descendentwringthou.com/dpyenfbcfy?key=34d817730d826dc4b2b226ab1253bf80',
-    'https://chalaips.com/4/6448298',
-    'https://descendentwringthou.com/dpyenfbcfy?key=34d817730d826dc4b2b226ab1253bf80',
-    'https://doruffleton.com/4/6532807', 'https://potsaglu.net/4/6533596'];
+
+function createlink(element,divlinklist,playertext,backcolor){
+  if (element[1].length > 1) {
+    pplayername1.innerText = playertext;
+    divlinklist.appendChild(pplayername1);
+  }
   for (let j = 0; j < element[1].length; j++) {
     const elementlink = element[1][j];
     if (element[1].length > 1) {
       var h3link1 = document.createElement('h3');
-      var alink1 = document.createElement('a');
-      alink1.className = 'playerlink';
-      alink1.innerHTML = `${data.title} Part ${j + 1}`;
-      alink1.target = '_blank';
-      alink1.setAttribute('onclick', `openplayer(this, '${element[0]}','${elementlink}')`)
-      alink1.href = directarray[j];
-      h3link1.appendChild(alink1);
+      var plink1 = document.createElement('p');
+      plink1.className = 'playerlink';
+      plink1.innerHTML = `${data.title} Part ${j + 1}`;
+      plink1.setAttribute('onclick', `openplayer('${element[0]}','${elementlink}')`)
+      h3link1.appendChild(plink1);
       divlinklist.appendChild(h3link1);
     } else {
       var h3link1 = document.createElement('h3');
-      var alink1 = document.createElement('a');
-      alink1.className = 'playerlink';
-      alink1.innerHTML = `${data.title} Full Episode`;
-      alink1.target = '_blank';
-      alink1.setAttribute('onclick', `openplayer(this, '${element[0]}','${elementlink}')`)
-      alink1.href = directarray[index];
-      h3link1.appendChild(alink1);
+      var plink1 = document.createElement('p');
+      plink1.className = 'playerlink moreheight';
+      plink1.innerHTML = playertext;
+      plink1.style.backgroundColor = backcolor;
+      plink1.setAttribute('onclick', `openplayer('${element[0]}','${elementlink}')`)
+      h3link1.appendChild(plink1);
       divlinklist.appendChild(h3link1);
     }
   }
 }
-let isFirstClick = true;
-var longurl = '#',mainurlezoic = '';
-function openplayer(event, playername, linkcode) {
-  if (isFirstClick) {
-    isFirstClick = false;
-  } else {
-    if (playername == 'vkspeed') {
-      mainurlezoic=longurl[0].replace('NEHALCHANGE',`%2F%23STARdownNUSAhttps://vkspeed.com/embed-${linkcode}.htmlSEC${longurl[1]}`);
-      event.href = mainurlezoic;
-    } else if (playername == 'okru') {
-      mainurlezoic=longurl[0].replace('NEHALCHANGE',`%2F%23STARsplayNUSAhttps://ok.ru/videoembed/${linkcode}`);
-      event.href = mainurlezoic;
-    } else if (playername == 'vkprime') {
-      mainurlezoic=longurl[0].replace('NEHALCHANGE',`%2F%23STARsplayNUSAhttps://vkprime.com/embed-${linkcode}.html`);
-      event.href = mainurlezoic;
-    } else if (playername == 'multiupdownload') {
-      mainurlezoic=longurl[0].replace('NEHALCHANGE',`%2F%23STARdownNUSAhttps://multiup.org/${linkcode}SEC${longurl[1]}`);
-      event.href = mainurlezoic;
-    }
-    isFirstClick = true;
+
+
+
+var longurl = [];
+function openplayer(playername, linkcode) {
+  if (playername == 'vkspeed') {
+    window.open(longurl[0].replace('NEHALCHANGE',`%2F%23STARdownNUSAhttps://vkspeed.com/embed-${linkcode}.htmlSEC${longurl[1]}`), '_blank');
+  } else if (playername == 'okru') {
+    window.open(longurl[0].replace('NEHALCHANGE',`%2F%23STARplayNUSAhttps://ok.ru/videoembed/${linkcode}`), '_blank');
+  } else if (playername == 'vkprime') {
+    window.open(longurl[0].replace('NEHALCHANGE',`%2F%23STARplayNUSAhttps://vkprime.com/embed-${linkcode}.html`), '_blank');
+  } else if (playername == 'multiupdownload') {
+    window.open(longurl[0].replace('NEHALCHANGE',`%2F%23STARdownNUSAhttps://multiup.org/${linkcode}SEC${longurl[1]}`), '_blank');
   }
 }
 
@@ -233,9 +221,9 @@ Desi Tv Serial ${onlyname.split(' ').slice(0, -3).join(' ')} Episode – ${onlyn
 ${onlyname.split(' ').slice(0, -3).join(' ')} Online.`);
 
 var metaogurl = document.querySelector('meta[property="og:url"]');
-metaogurl.setAttribute('content', `https://serialghar.fun/${data.url}`);
+metaogurl.setAttribute('content', `https://serialghar.ullu.es/${data.url}`);
 var canonicalLink = document.querySelector('link[rel="canonical"]');
-canonicalLink.href = `https://serialghar.fun/${data.url}`;
+canonicalLink.href = `https://serialghar.ullu.es/${data.url}`;
 
 var metapubtime = document.querySelector('meta[property="article:published_time"]');
 metapubtime.setAttribute('content', data.createdAt);
