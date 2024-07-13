@@ -141,16 +141,16 @@ app.get('/sitemap.xml', async (req, res) => {
         var topdata = `<?xml version='1.0' encoding='utf-8'?>
         <sitemapindex xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
           <sitemap>
-            <loc>https://serialghar.fun/sitemap1.xml</loc>
+            <loc>https://serialghar.ullu.es/sitemap1.xml</loc>
           </sitemap>
           <sitemap>
-            <loc>https://serialghar.fun/sitemap2.xml</loc>
+            <loc>https://serialghar.ullu.es/sitemap2.xml</loc>
           </sitemap>
           <sitemap>
-            <loc>https://serialghar.fun/sitemap3.xml</loc>
+            <loc>https://serialghar.ullu.es/sitemap3.xml</loc>
           </sitemap>
           <sitemap>
-            <loc>https://serialghar.fun/sitemap4.xml</loc>
+            <loc>https://serialghar.ullu.es/sitemap4.xml</loc>
           </sitemap>
         </sitemapindex>`;
         // Set content type and send the sitemap XML
@@ -174,13 +174,13 @@ app.get('/sitemap:pageNum.xml', async (req, res) => {
         var topdata = `<?xml version="1.0" encoding="UTF-8"?>
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         <url>
-<loc>https://serialghar.fun</loc>
+<loc>https://serialghar.ullu.es</loc>
 <lastmod>2023-03-18T22:09:36.990Z</lastmod>
 </url>`;
         var bottomdata = `</urlset>`;
         data.forEach(item => {
             topdata += `<url>
-            <loc>https://serialghar.fun/${item.url}</loc>
+            <loc>https://serialghar.ullu.es/${item.url}</loc>
             <lastmod>${item.updatedAt.toISOString()}</lastmod>
             </url>`;
         });
