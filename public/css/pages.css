@@ -1,0 +1,133 @@
+.symboldiv {
+    background-color: white;
+    margin: 10px 5px;
+    width: calc(100% - 10px);
+    border-radius: .375rem;
+    box-shadow: 0 0 transparent, 0 0 transparent, 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.symboldiv>h1 {
+    padding: 10px;
+    border-top-left-radius: .375rem;
+    border-top-right-radius: .375rem;
+    background-color: #2c3e50;
+    color: #ffb703;
+    font-weight: 700;
+    font-size: xx-large;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.content {
+    padding: 20px;
+}
+
+.content h3 {
+    font-size: x-large;
+}
+
+p {
+    line-height: 1.4rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.pointtag {
+    list-style-position: inside;
+    padding-left: 20px;
+    line-height: 1.5rem;
+}
+
+.pointtag li {
+    color: black;
+}
+
+.pointtag a {
+    color: black;
+}
+
+.pointtag a:hover {
+    text-decoration: underline;
+}
+
+
+.normal {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px
+}
+
+.normal label {
+    flex-basis: 80px
+}
+
+
+#namecon,#emailcon,
+#topic,
+select {
+    display: block;
+    width: 50%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #656464;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out .15s
+}
+
+#message {
+    width: 50%;
+    padding: 5px;
+    height: 100px;
+    display: block;
+    font-size: 16px;
+    line-height: 1.42857143;
+    background: #e8e8e8;
+    border: 1px solid #d8d8d8;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    padding: 6px 7px;
+    position: relative;
+    transition: all 150ms;
+    resize: vertical;
+    overflow: auto
+}
+
+#namecon:focus,
+#emailcon:focus,
+#topic:focus,
+#message:focus,
+select:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6)
+}
+
+.userbtn {
+    color: black;
+    background-color: #ffb703;
+    margin-bottom: 0;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid #706f6f;
+    padding: 6px 12px;
+    font-size: 20px;
+    line-height: 1.42857;
+    border-radius: 4px
+}
+
+.userbtn:hover {
+    background-color: #ccc
+}

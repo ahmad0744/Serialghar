@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="canonical" href="">
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="serialghar.fun" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:url" content="" />
+    <meta property="fb:admins" content="serialghar" />
+    <meta property="og:image" content="" />
+    <meta property="article:published_time" content="" />
+    <meta property="article:modified_time" content="" />
+    <meta property="article:publisher" content="serialghar.fun" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="">
+    <meta name="twitter:site" content="@serialghar" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:image" content="" />
+    <style>.mvSideBar{ bottom: 0; transform: translatex(-800px); transition: transform 500ms ease-in-out} </style>
+    <link rel="stylesheet" href="/css/main-blog.css">
+    <%- include('amain/header-forstatic-file.ejs') %>
+</head>
+
+<body>
+    <%- include('amain/top.ejs') %>
+        <div id="mainbody">
+            <div class="bodymain">
+                <div class="body">
+                    <div id="bodycontainer">
+                    </div>
+                    <div class="block-head">
+                        <h3>Related Articles</h3>
+                        <div class="stripe-line"></div>
+                    </div>
+                    <div class="related" id="relateddiv">
+                    </div>
+                </div>
+                <script>
+                    var data = <%- JSON.stringify(user) %>;
+                </script>
+            </div>
+            <%- include('amain/sidebar.ejs') %>
+        </div>
+        <%- include('amain/footer.ejs') %>
+        <script src="/js/mini-main-blog.js"></script>
+</body>
+
+</html>

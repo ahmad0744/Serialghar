@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /page/
+Disallow: /cgi-bin/
+
+User-agent: OpenAI-GPT
+Disallow: /
+
+Sitemap: https://serialghar.fun/sitemap.xml

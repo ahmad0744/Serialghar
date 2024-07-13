@@ -1,0 +1,155 @@
+
+.body ul {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: -13px
+}
+
+.body ul li {
+    height: 250px;
+    list-style-type: none;
+    margin: 10px;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: 0 0 transparent, 0 0 transparent, 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06)
+}
+/*
+.imageContainer {
+    width: 100%;
+    height: 200px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+  overflow: hidden;
+  }
+  */
+
+.body ul img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px
+}
+
+.body ul li h2 {
+    color: black;
+    font-size: large;
+    height: 47px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 1px;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden
+}
+
+.body ul li:hover {
+    background-color: black
+}
+
+.body ul li:hover h2 {
+    color: white
+}
+
+@media only screen and (max-width:1237px) {
+    .body ul {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media only screen and (max-width:624px) {
+    .body ul {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}
+@media only screen and (max-width:355px) {
+    .body ul li {
+        height: auto;
+        margin: 7px 2px
+    }
+}
+
+.paginationgh {
+    display: flex;
+    justify-content: center
+}
+
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 5px;
+    border-radius: 4px;
+    text-align: center;
+    justify-content: center
+}
+
+.pagination>li {
+    display: inline
+}
+
+.pagination>li:first-child>a,
+.pagination>li:first-child>span {
+    margin-left: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px
+}
+
+.pagination>li:last-child>a,
+.pagination>li:last-child>span {
+    margin-left: 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px
+}
+
+.pagination>.disabled>a,
+.pagination>.disabled>a:focus,
+.pagination>.disabled>a:hover,
+.pagination>.disabled>span,
+.pagination>.disabled>span:focus,
+.pagination>.disabled>span:hover {
+    color: black;
+    cursor: not-allowed;
+    background-color: rgb(158, 154, 155);
+    border-color: #ddd
+}
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    z-index: 3;
+    color: #ffffff;
+    cursor: default;
+    background-color: #f86f03;
+    border-color: #ddd
+}
+
+.pagination>li>a,
+.pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #15202B;
+    border: 1px solid #ddd
+}
+
+.pagination>li>a:hover,
+.pagination>li>span:hover {
+    background-color: red
+}
+
+#notavailable {
+    display: none;
+    font-size: xx-large;
+    font-weight: bolder;
+    align-items: center;
+    text-align: center;
+    color: red;
+    letter-spacing: 15px
+}

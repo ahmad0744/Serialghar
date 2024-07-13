@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serialghar - Watch Online Indian Tv Shows Full Episode - Serialghar</title>
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="description"
+        content="Watch Online Full Episode In HD, Available All Indian Tv Serial Latest Episodes, Bigg Boss Ott 2,Do Dil Mil Rahe Hain, Baalveer 3, Serialghar">
+    <meta name="keywords"
+        content="Watch Online Full Episode In HD, Available All Indian Tv Serial Latest Episodes, Bigg Boss Ott 2,Do Dil Mil Rahe Hain, Baalveer 3, Serialghar">
+    <link rel="canonical" href="https://serialghar.fun">
+    <meta name="title"
+        content="Watch Online Full Episode In HD, Available All Indian Tv Serial Latest Episodes, Bigg Boss Ott 2,Do Dil Mil Rahe Hain, Baalveer 3, Serialghar">
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="serialghar.fun" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Serialghar - Watch Online Indian Tv Shows Full Episode - Serialghar" />
+    <meta property="og:description"
+        content="Watch Online Full Episode In HD, Available All Indian Tv Serial Latest Episodes, Bigg Boss Ott 2,Do Dil Mil Rahe Hain, Baalveer 3, Serialghar" />
+    <meta property="og:url" content="https://serialghar.fun/" />
+    <meta property="fb:admins" content="serialghar" />
+    <meta property="og:image" content="https://serialghar.fun/images/serialghar_banner.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://serialghar.fun/">
+    <meta name="twitter:site" content="@serialghar" />
+    <meta name="twitter:title" content="Serialghar - Watch Online Indian Tv Shows Full Episode - Serialghar" />
+    <meta name="twitter:description"
+        content="Watch Online Full Episode In HD, Available All Indian Tv Serial Latest Episodes, Bigg Boss Ott 2,Do Dil Mil Rahe Hain, Baalveer 3, Serialghar" />
+    <meta name="twitter:image" content="https://serialghar.fun/images/serialghar_banner.jpg" />
+    <style>.mvSideBar{ bottom: 0; transform: translatex(-800px); transition: transform 500ms ease-in-out} </style>
+    <link rel="stylesheet" href="/css/main-home.css">
+    <%- include('amain/header-forstatic-file.ejs') %>
+</head>
+
+<body>
+    <%- include('amain/top.ejs') %>
+        <div id="mainbody">
+            <div class="bodymain">
+                <p id="notavailable">Not Available</p>
+                <div class="body">
+                    <ul id="recentpost">
+                    </ul>
+                </div>
+                <form action="" method="get">
+                    <input type="hidden" name="page" id="page" value="1">
+                    <input style="background: transparent;border: none !important;font-size:0;" type="submit"
+                        id="submit">
+                </form>
+                <div class="paginationgh">
+                    <script>
+                        var pages = <%= pages %>,
+                            current = <%= current %>,
+                                perPage = <%= perPage %>,
+                                    count = <%= count %>,
+                                        cttype = '<%= cttype %>',
+                                        user = <%- JSON.stringify(user) %>;
+
+                        if (user == 0) {
+                            document.getElementById('notavailable').style.display = "block";
+                        } else {
+                            var creater;
+                            if (current == pages) {
+                                creater = count - (current - 1) * perPage;
+                            } else {
+                                creater = perPage;
+                            }
+                            for (var i = 0; i < creater; i++) {
+                                var litag = document.createElement('li');
+
+                                var atag = document.createElement('a');
+                                atag.title = user[i].title;
+                                if (cttype == 'all') {
+                                    atag.href = user[i].url;
+                                } else {
+                                    atag.href = `../${user[i].url}`;
+                                }
+
+                                var img = document.createElement('img');
+                                img.src = user[i].image;
+                                img.alt = user[i].title;
+
+                                var h2 = document.createElement('h2');
+                                h2.innerHTML = user[i].title;
+
+                                atag.appendChild(img);
+                                atag.appendChild(h2);
+                                litag.appendChild(atag);
+                                document.getElementById('recentpost').append(litag);
+                            }
+                        }
+                    </script>
+                    <%- include('amain/pagination.ejs') %>
+                </div>
+                <br>
+            </div>
+            <%- include('amain/sidebar.ejs') %>
+        </div>
+        <%- include('amain/footer.ejs') %>
+            <script src="/js/mini-main.js"></script>
+            <script type="text/javascript">
+                function First(a) {
+                    document.getElementById("page").value = a;
+                    let button = document.getElementById('submit');
+                    button.click();
+                }
+            </script>
+</body>
+</html>
