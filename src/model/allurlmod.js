@@ -14,7 +14,7 @@ const datascema =new mongoose.Schema({
         require: true
     },
     views: {
-        type: Number,
+        type: String,
         require: true
     },
     tag: {
@@ -26,7 +26,7 @@ const datascema =new mongoose.Schema({
         require: true
     },
     downlink: {
-        type: Array,
+        type: Object,
         require: true
     }
 },
