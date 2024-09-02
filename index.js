@@ -247,9 +247,7 @@ app.get("/channel/:channeltype", async (req, res) => {
         next(err);
     }
 })
-var datasubmjson = {};
 async function secondupdate(articalurl) {
-    datasubmjson = {};
     let url = `https://serialmaza.online/${articalurl}/`;
     linkarray = [];
     try {
@@ -258,52 +256,71 @@ async function secondupdate(articalurl) {
 
         const pCount = $('div.entry p').length;
         for (let index = 0; index < pCount; index++) {
-            const ptitle = $(`div.entry p:nth-child(${index + 1})`).text().toLowerCase().replace(/\s+/g, '');
+            const ptitle = $(`div.entry p:nth-child(${index + 1}) b span`).text().toLowerCase().replace(/\s+/g, '').trim();
             /*const thirdPText = $('div.entry p:nth-child(3)').text();*/
             if (ptitle == 'vkspeedlink' || ptitle == 'vkspeedlinks' || ptitle == 'vkspeed' || ptitle == 'vkspeedplayerlink') {
                 index++;
-                var linkurl = [],allaray = [];
+                var linkurl = [];
                 const atagcount = $(`div.entry p:nth-child(${index + 1})`).find('a');
                 for (let i = 0; i < atagcount.length; i++) {
                     const element = $(atagcount[i]).attr('href').split('=')[1];
                     linkurl.push(element);
                 }
-                allaray.push('vkspeed');
-                allaray.push(linkurl);
-                linkarray.push(allaray);
+                setValueWithUniqueKey(linkarray, 'vkspeed', linkurl);
+            } else if (ptitle == 'ultrafastlink' || ptitle == 'ultrafastlinks' || ptitle == 'ultrafast' || ptitle == 'ultrafastplayerlink' || ptitle == 'ultrafastplayerlinks') {
+                index++;
+                var linkurl = [];
+                const atagcount = $(`div.entry p:nth-child(${index + 1})`).find('a');
+                for (let i = 0; i < atagcount.length; i++) {
+                    const element = $(atagcount[i]).attr('href').split('=')[1];
+                    linkurl.push(element);
+                }
+                setValueWithUniqueKey(linkarray, 'ultrafast', linkurl);
             } else if (ptitle == 'okruplayerlinks' || ptitle == 'okruplayerlink' || ptitle == 'okruplayer') {
                 index++;
-                var linkurl = [],allaray = [];
+                var linkurl = [];
                 const atagcount = $(`div.entry p:nth-child(${index + 1})`).find('a');
                 for (let i = 0; i < atagcount.length; i++) {
                     const element = $(atagcount[i]).attr('href').split('=')[1];
                     linkurl.push(element);
                 }
-                allaray.push('okru');
-                allaray.push(linkurl);
-                linkarray.push(allaray);
+                setValueWithUniqueKey(linkarray, 'okru', linkurl);
             } else if (ptitle == 'vkprimelink' || ptitle == 'vkprimelinks' || ptitle == 'vkprime') {
                 index++;
-                var linkurl = [],allaray = [];
+                var linkurl = [];
                 const atagcount = $(`div.entry p:nth-child(${index + 1})`).find('a');
                 for (let i = 0; i < atagcount.length; i++) {
                     const element = $(atagcount[i]).attr('href').split('=')[1];
                     linkurl.push(element);
                 }
-                allaray.push('vkprime');
-                allaray.push(linkurl);
-                linkarray.push(allaray);
+                setValueWithUniqueKey(linkarray, 'vkprime', linkurl);
+            } else if (ptitle == 'flashplayerlink' || ptitle == 'flashlinks' || ptitle == 'flash' || ptitle == 'flashlink') {
+                index++;
+                var linkurl = [];
+                const atagcount = $(`div.entry p:nth-child(${index + 1})`).find('a');
+                for (let i = 0; i < atagcount.length; i++) {
+                    const element = $(atagcount[i]).attr('href').split('=')[1];
+                    linkurl.push(element);
+                }
+                setValueWithUniqueKey(linkarray, 'flash', linkurl);
+            } else if (ptitle == 'streamhidelink' || ptitle == 'streamhideplayer' || ptitle == 'streamhide' || ptitle == 'streamhideplayerlink') {
+                index++;
+                var linkurl = [];
+                const atagcount = $(`div.entry p:nth-child(${index + 1})`).find('a');
+                for (let i = 0; i < atagcount.length; i++) {
+                    const element = $(atagcount[i]).attr('href').split('=')[1];
+                    linkurl.push(element);
+                }
+                setValueWithUniqueKey(linkarray, 'streamhide', linkurl);
             } else if (ptitle == 'multiupdownloadlink' || ptitle == 'multiupdownloadlinks' || ptitle == 'multiupdownload' || ptitle == 'multiup') {
                 index++;
-                var linkurl = [],allaray = [];
+                var linkurl = [];
                 const atagcount = $(`div.entry p:nth-child(${index + 1})`).find('a');
                 for (let i = 0; i < atagcount.length; i++) {
                     const element = $(atagcount[i]).attr('href').split('=')[1];
                     linkurl.push(element);
                 }
-                allaray.push('multiupdownload');
-                allaray.push(linkurl);
-                linkarray.push(allaray);
+                setValueWithUniqueKey(linkarray, 'multiupdownload', linkurl);
             }
         }
         if (linkarray.length < 1) {
@@ -312,35 +329,39 @@ async function secondupdate(articalurl) {
                 const ptitle = $(element).text().toLowerCase().replace(/\s+/g, '');
                 const elementurl = $(element).attr('href').split('=')[1];
                 if (ptitle == 'vkspeedlink' || ptitle == 'vkspeedlinks' || ptitle == 'vkspeed' || ptitle == 'vkspeedplayerlink') {
-                    var linkurl = [],allaray = [];
+                    var linkurl = [];
                     linkurl.push(elementurl);
-                    allaray.push('vkspeed');
-                    allaray.push(linkurl);
-                    linkarray.push(allaray);
+                    setValueWithUniqueKey(linkarray, 'vkspeed', linkurl);
+                } else if (ptitle == 'ultrafastlink' || ptitle == 'ultrafastlinks' || ptitle == 'ultrafast' || ptitle == 'ultrafastplayerlink' || ptitle == 'ultrafastplayerlinks') {
+                    var linkurl = [];
+                    linkurl.push(elementurl);
+                    setValueWithUniqueKey(linkarray, 'ultrafast', linkurl);
                 } else if (ptitle == 'okruplayerlinks' || ptitle == 'okruplayerlink' || ptitle == 'okruplayer') {
-                    var linkurl = [],allaray = [];
+                    var linkurl = [];
                     linkurl.push(elementurl);
-                    allaray.push('okru');
-                    allaray.push(linkurl);
-                    linkarray.push(allaray);
+                    setValueWithUniqueKey(linkarray, 'okru', linkurl);
                 } else if (ptitle == 'vkprimelink' || ptitle == 'vkprimelinks' || ptitle == 'vkprime' || ptitle == 'vkprimeplayerlink') {
-                    var linkurl = [],allaray = [];
+                    var linkurl = [];
                     linkurl.push(elementurl);
-                    allaray.push('vkprime');
-                    allaray.push(linkurl);
-                    linkarray.push(allaray);
+                    setValueWithUniqueKey(linkarray, 'vkprime', linkurl);
+                } else if (ptitle == 'flashplayerlink' || ptitle == 'flashlinks' || ptitle == 'flash' || ptitle == 'flashlink') {
+                    var linkurl = [];
+                    linkurl.push(elementurl);
+                    setValueWithUniqueKey(linkarray, 'flash', linkurl);
+                } else if (ptitle == 'streamhidelink' || ptitle == 'streamhideplayer' || ptitle == 'streamhide' || ptitle == 'streamhideplayerlink') {
+                    var linkurl = [];
+                    linkurl.push(elementurl);
+                    setValueWithUniqueKey(linkarray, 'streamhide', linkurl);
                 } else if (ptitle == 'multiupdownloadlink' || ptitle == 'multiupdownloadlinks' || ptitle == 'multiupdownload' || ptitle == 'multiup') {
-                    var linkurl = [],allaray = [];
+                    var linkurl = [];
                     linkurl.push(elementurl);
-                    allaray.push('multiupdownload');
-                    allaray.push(linkurl);
-                    linkarray.push(allaray);
+                    setValueWithUniqueKey(linkarray, 'multiupdownload', linkurl);
                 }
             });
 
         }
         datasubmjson.downlink = linkarray;
-        dataupdate(linkarray,articalurl);
+        dataupdate(linkarray, articalurl);
     } catch (error) {
         console.log('Error:', error);
         throw error;
@@ -348,14 +369,35 @@ async function secondupdate(articalurl) {
 }
 async function dataupdate(linkarray, articalurl) {
     try {
-      const result = await allurlmodule.updateOne(
-        { url: articalurl },
-        { $set: { downlink: linkarray } }
-      );
-      console.log('Document updated successfully');
+        const result = await allurlmodule.updateOne(
+            { url: articalurl },
+            { $set: { downlink: linkarray } }
+        );
+        console.log('Document updated successfully');
     } catch (err) {
-      console.error('Error updating document:', err);
+        console.error('Error updating document:', err);
     }
+}
+
+function setValueWithUniqueKey(jsonObj, baseKey, value) {
+    // Check if the baseKey exists
+    if (!(baseKey in jsonObj)) {
+        jsonObj[baseKey] = value;
+        return jsonObj;
+    }
+
+    // If the key exists, find the next available key
+    let index = 1;
+    let newKey = `${baseKey}${index}`;
+
+    while (newKey in jsonObj) {
+        index += 1;
+        newKey = `${baseKey}${index}`;
+    }
+
+    // Set the value with the new unique key
+    jsonObj[newKey] = value;
+    return jsonObj;
 }
 const furlall = require('./src/model/furlall');
 app.post("/relatedblog", async (req, resp) => {
@@ -466,14 +508,15 @@ async function databasecheck(dataarray) {
         }
     }
 }
-var linkarray = [];
+var linkarray = {};
 async function secondscrapping(imgdata, titledata, exacturldata, childcou) {
     let url = `https://serialmaza.online/${exacturldata}/`;
+    //let url = `https://serialmaza.online/khatron-ke-khiladi-14-31st-august-2024-episode-11/`;
     datasubmjson.title = titledata;
     datasubmjson.url = exacturldata;
     datasubmjson.image = imgdata;
-    datasubmjson.views = 0;
-    linkarray = [];
+    datasubmjson.views = '0';
+    linkarray = {};
     try {
         const response = await axios.get(url);
         const $ = cheerio.load(response.data);
@@ -489,118 +532,107 @@ async function secondscrapping(imgdata, titledata, exacturldata, childcou) {
 
         const pCount = $('div.entry p').length;
         for (let index = 0; index < pCount; index++) {
-            const ptitle = $(`div.entry p:nth-child(${index + 1})`).text().toLowerCase().replace(/\s+/g, '');
+            const ptitle = $(`div.entry p:nth-child(${index + 1}) b span`).text().toLowerCase().replace(/\s+/g, '').trim();
             /*const thirdPText = $('div.entry p:nth-child(3)').text();*/
             if (ptitle == 'vkspeedlink' || ptitle == 'vkspeedlinks' || ptitle == 'vkspeed' || ptitle == 'vkspeedplayerlink') {
                 index++;
-                var linkurl = [], allaray = [];
+                var linkurl = [];
                 const atagcount = $(`div.entry p:nth-child(${index + 1})`).find('a');
                 for (let i = 0; i < atagcount.length; i++) {
                     const element = $(atagcount[i]).attr('href').split('=')[1];
                     linkurl.push(element);
                 }
-                allaray.push('vkspeed');
-                allaray.push(linkurl);
-                linkarray.push(allaray);
+                setValueWithUniqueKey(linkarray, 'vkspeed', linkurl);
+            } else if (ptitle == 'ultrafastlink' || ptitle == 'ultrafastlinks' || ptitle == 'ultrafast' || ptitle == 'ultrafastplayerlink' || ptitle == 'ultrafastplayerlinks') {
+                index++;
+                var linkurl = [];
+                const atagcount = $(`div.entry p:nth-child(${index + 1})`).find('a');
+                for (let i = 0; i < atagcount.length; i++) {
+                    const element = $(atagcount[i]).attr('href').split('=')[1];
+                    linkurl.push(element);
+                }
+                setValueWithUniqueKey(linkarray, 'ultrafast', linkurl);
             } else if (ptitle == 'okruplayerlinks' || ptitle == 'okruplayerlink' || ptitle == 'okruplayer') {
                 index++;
-                var linkurl = [], allaray = [];
+                var linkurl = [];
                 const atagcount = $(`div.entry p:nth-child(${index + 1})`).find('a');
                 for (let i = 0; i < atagcount.length; i++) {
                     const element = $(atagcount[i]).attr('href').split('=')[1];
                     linkurl.push(element);
                 }
-                allaray.push('okru');
-                allaray.push(linkurl);
-                linkarray.push(allaray);
+                setValueWithUniqueKey(linkarray, 'okru', linkurl);
             } else if (ptitle == 'vkprimelink' || ptitle == 'vkprimelinks' || ptitle == 'vkprime' || ptitle == 'vkprimeplayerlink') {
                 index++;
-                var linkurl = [], allaray = [];
+                var linkurl = [];
                 const atagcount = $(`div.entry p:nth-child(${index + 1})`).find('a');
                 for (let i = 0; i < atagcount.length; i++) {
                     const element = $(atagcount[i]).attr('href').split('=')[1];
                     linkurl.push(element);
                 }
-                allaray.push('vkprime');
-                allaray.push(linkurl);
-                linkarray.push(allaray);
+                setValueWithUniqueKey(linkarray, 'vkprime', linkurl);
             } else if (ptitle == 'flashplayerlink' || ptitle == 'flashlinks' || ptitle == 'flash' || ptitle == 'flashlink') {
                 index++;
-                var linkurl = [], allaray = [];
+                var linkurl = [];
                 const atagcount = $(`div.entry p:nth-child(${index + 1})`).find('a');
                 for (let i = 0; i < atagcount.length; i++) {
                     const element = $(atagcount[i]).attr('href').split('=')[1];
                     linkurl.push(element);
                 }
-                allaray.push('flash');
-                allaray.push(linkurl);
-                linkarray.push(allaray);
-            }
-            else if (ptitle == 'streamhidelink' || ptitle == 'streamhideplayer' || ptitle == 'streamhide' || ptitle == 'streamhideplayerlink') {
+                linkarray['flash'] = linkurl;
+                setValueWithUniqueKey(linkarray, 'flash', linkurl);
+            } else if (ptitle == 'streamhidelink' || ptitle == 'streamhideplayer' || ptitle == 'streamhide' || ptitle == 'streamhideplayerlink') {
                 index++;
-                var linkurl = [], allaray = [];
+                var linkurl = [];
                 const atagcount = $(`div.entry p:nth-child(${index + 1})`).find('a');
                 for (let i = 0; i < atagcount.length; i++) {
                     const element = $(atagcount[i]).attr('href').split('=')[1];
                     linkurl.push(element);
                 }
-                allaray.push('streamhide');
-                allaray.push(linkurl);
-                linkarray.push(allaray);
+                setValueWithUniqueKey(linkarray, 'streamhide', linkurl);
             } else if (ptitle == 'multiupdownloadlink' || ptitle == 'multiupdownloadlinks' || ptitle == 'multiupdownload' || ptitle == 'multiup') {
                 index++;
-                var linkurl = [], allaray = [];
+                var linkurl = [];
                 const atagcount = $(`div.entry p:nth-child(${index + 1})`).find('a');
                 for (let i = 0; i < atagcount.length; i++) {
                     const element = $(atagcount[i]).attr('href').split('=')[1];
                     linkurl.push(element);
                 }
-                allaray.push('multiupdownload');
-                allaray.push(linkurl);
-                linkarray.push(allaray);
+                setValueWithUniqueKey(linkarray, 'multiupdownload', linkurl);
             }
         }
-        if (linkarray.length < 1) {
+        if (Object.keys(linkarray).length < 1) {
             const aTags = $('div.entry p a');
             $('div.entry p a').each((index, element) => {
                 const ptitle = $(element).text().toLowerCase().replace(/\s+/g, '');
                 const elementurl = $(element).attr('href').split('=')[1];
                 if (ptitle == 'vkspeedlink' || ptitle == 'vkspeedlinks' || ptitle == 'vkspeed' || ptitle == 'vkspeedplayerlink') {
-                    var linkurl = [], allaray = [];
+                    var linkurl = [];
                     linkurl.push(elementurl);
-                    allaray.push('vkspeed');
-                    allaray.push(linkurl);
-                    linkarray.push(allaray);
+                    setValueWithUniqueKey(linkarray, 'vkspeed', linkurl);
+                } else if (ptitle == 'ultrafastlink' || ptitle == 'ultrafastlinks' || ptitle == 'ultrafast' || ptitle == 'ultrafastplayerlink' || ptitle == 'ultrafastplayerlinks') {
+                    var linkurl = [];
+                    linkurl.push(elementurl);
+                    setValueWithUniqueKey(linkarray, 'ultrafast', linkurl);
                 } else if (ptitle == 'okruplayerlinks' || ptitle == 'okruplayerlink' || ptitle == 'okruplayer') {
-                    var linkurl = [], allaray = [];
+                    var linkurl = [];
                     linkurl.push(elementurl);
-                    allaray.push('okru');
-                    allaray.push(linkurl);
-                    linkarray.push(allaray);
+                    setValueWithUniqueKey(linkarray, 'okru', linkurl);
                 } else if (ptitle == 'vkprimelink' || ptitle == 'vkprimelinks' || ptitle == 'vkprime' || ptitle == 'vkprimeplayerlink') {
-                    var linkurl = [], allaray = [];
+                    var linkurl = [];
                     linkurl.push(elementurl);
-                    allaray.push('vkprime');
-                    allaray.push(linkurl);
-                    linkarray.push(allaray);
+                    setValueWithUniqueKey(linkarray, 'vkprime', linkurl);
                 } else if (ptitle == 'flashplayerlink' || ptitle == 'flashlinks' || ptitle == 'flash' || ptitle == 'flashlink') {
-                    var linkurl = [], allaray = [];
+                    var linkurl = [];
                     linkurl.push(elementurl);
-                    allaray.push('flash');
-                    allaray.push(linkurl);
-                    linkarray.push(allaray);
+                    setValueWithUniqueKey(linkarray, 'flash', linkurl);
                 } else if (ptitle == 'streamhidelink' || ptitle == 'streamhideplayer' || ptitle == 'streamhide' || ptitle == 'streamhideplayerlink') {
-                    var linkurl = [], allaray = [];
+                    var linkurl = [];
                     linkurl.push(elementurl);
-                    allaray.push('streamhide');
-                    allaray.push(linkurl);
-                    linkarray.push(allaray);
+                    setValueWithUniqueKey(linkarray, 'streamhide', linkurl);
                 } else if (ptitle == 'multiupdownloadlink' || ptitle == 'multiupdownloadlinks' || ptitle == 'multiupdownload' || ptitle == 'multiup') {
-                    var linkurl = [], allaray = [];
+                    var linkurl = [];
                     linkurl.push(elementurl);
-                    allaray.push('multiupdownload');
-                    allaray.push(linkurl);
-                    linkarray.push(allaray);
+                    setValueWithUniqueKey(linkarray, 'multiupdownload', linkurl);
                 }
             });
 
